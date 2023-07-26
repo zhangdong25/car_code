@@ -2,7 +2,7 @@
   <div class="content">
     <div>
       <el-radio-group size="medium" v-model="select">
-        我做了修改
+        我做了修改的
         <el-radio-button label="登录"></el-radio-button>
         <el-radio-button label="注册"></el-radio-button>
       </el-radio-group>
