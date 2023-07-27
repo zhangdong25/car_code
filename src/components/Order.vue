@@ -33,6 +33,10 @@ export default {
   },
   mounted() {
     this.initMap();
+    this.$message({
+      message: '欢迎进入二手车物流管理系统',
+      type: 'success'
+    });
   },
   methods: {
     initMap() {

@@ -15,7 +15,7 @@
       <h2 slot="header">物流状态</h2>
       <div class="logistics-container">
         <el-steps :active="currentStatusIndex" :space="100" direction="vertical">
-          <el-step v-for="(status, index) in logisticsStatus" :key="index" :title="status.time" :description="status.message" :status="status.status"></el-step>
+          <el-step v-for="(status, index) in logisticsStatus" :key="index" :title="status.time" :description="status.message" :status="status.status" :icon="status.icon"></el-step>
         </el-steps>
       </div>
     </el-card>
@@ -50,7 +50,7 @@ export default {
         this.logisticsStatus = [
           { time: '2023-07-15 10:00', message: '您的订单已发货', status: 'success' },
           { time: '2023-07-15 12:00', message: '货物已到达目的地城市', status: 'success' },
-          { time: '2023-07-15 14:00', message: '正在派送中', status: 'process' },
+          { time: '2023-07-15 14:00', message: '正在派送中', status: 'process', icon: "el-icon-loading" },
           /* { time: '2023-07-15 16:00', message: '订单已签收' }, */
           // 添加更多物流状态...
         ];

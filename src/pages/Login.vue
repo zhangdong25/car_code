@@ -51,6 +51,10 @@ export default {
     loginTo() {
       /* alert(`用户名为：${this.username},用户密码为：${this.password},${this.select}`) */
       this.$router.push('/trans-order')
+      this.$message({
+        message: '欢迎进入二手车物流管理系统',
+        type: 'success'
+      });
     },
     register() {
       if (this.username == '' || this.password == '' || this.passwordCopy == '' || this.phone == '' || this.value == '') {
