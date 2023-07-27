@@ -9,13 +9,19 @@
     <div id="login" v-if="login">
       <el-input placeholder="请输入账号" clearable v-model="username" style="width: 70%; height: 45px;"></el-input>
       <el-input placeholder="请输入密码" show-password v-model="password" style="width: 70%; height: 45px;"></el-input>
-      <el-button type="success" round @click="login()">登录</el-button>
+      <el-button type="success" round @click="loginTo()">登录</el-button>
     </div>
     <div id="register" v-if="!login">
       <el-input placeholder="请输入账号" clearable v-model="username" style="width: 70%; height: 45px;"></el-input>
       <el-input placeholder="请输入密码" show-password v-model="password" style="width: 70%; height: 45px;"></el-input>
       <el-input placeholder="确认密码" show-password v-model="passwordCopy" style="width: 70%; height: 45px;"></el-input>
       <el-input placeholder="请输入联系方式" v-model="phone" style="width: 70%; height: 45px;"></el-input>
+      <div id="role">
+        <el-select v-model="value" placeholder="请选择身份">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
+      </div>
       <el-button type="primary" round @click="register()">提交</el-button>
     </div>
   </div>
@@ -30,15 +36,24 @@ export default {
       passwordCopy: '',
       phone: '',
       select: '登录',
-      login: true
+      login: true,
+      value: '',
+      options: [{
+        value: '选项1',
+        label: '买家',
+      }, {
+        value: '选项2',
+        label: '司机'
+      }]
     }
   },
   methods: {
-    login() {
-      alert(`用户名为：${this.username},用户密码为：${this.password},${this.select}`)
+    loginTo() {
+      /* alert(`用户名为：${this.username},用户密码为：${this.password},${this.select}`) */
+      this.$router.push('/order')
     },
     register() {
-      if (this.username == '' || this.password == '' || this.passwordCopy == '' || this.phone == '') {
+      if (this.username == '' || this.password == '' || this.passwordCopy == '' || this.phone == '' || this.value == '') {
         this.$message.error('填写所有信息，才可以提交!');
       } else {
         if (this.password != this.passwordCopy) {
@@ -56,6 +71,11 @@ export default {
     'select': {
       handler(nval, oval) {
         nval === "注册" ? this.login = false : this.login = true;
+        this.username = '';
+        this.password = '';
+        this.passwordCopy = '';
+        this.value = '';
+        this.phone = '';
       }
     }
   }
@@ -100,8 +120,26 @@ export default {
   align-items: center;
 }
 
+#role {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 45px;
+  // border-radius: 18px;
+}
+
+/deep/ .el-select {
+  width: 100%;
+  height: 100%;
+}
+
+/deep/ .el-input--suffix {
+  height: 100%;
+}
+
 /deep/ .el-input__inner {
-  border-radius: 18px;
+  // border-radius: 18px;
   height: 100%;
 }
 </style>
