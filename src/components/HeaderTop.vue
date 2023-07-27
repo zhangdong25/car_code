@@ -40,7 +40,7 @@ export default {
         this.$router.push('/feedback');
       }
       else {
-        this.$router.push('/mine');
+        this.$router.push('/personal');
       }
     }
   },

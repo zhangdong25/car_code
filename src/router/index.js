@@ -6,12 +6,13 @@ Vue.use(VueRouter);
 
 // 引入路由显示的页面
 import Order from "@/pages/Order"
-import SubOrder from '@/pages/SubOrder'
+import LogisticsCenter from '@/pages/LogisticsCenter'
 import DoneOrder from '@/pages/DoneOrder'
 import TransOrder from '@/pages/TransOrder'
 import OrderList from '@/pages/OrderList'
 import NotFound from '@/components/404.vue'
 import Login from "@/pages/Login"
+import PersonalCenter from "@/pages/PersonalCenter.vue"
 
 
 // 向外暴露并配置路由
@@ -47,11 +48,17 @@ export default new VueRouter({
       name: 'OrderList',
       component: OrderList
     },
-    // 发布订单页面
+    // 物流中心页面
     {
-      path: '/suborder',
-      name: 'SubOrder',
-      component: SubOrder
+      path: '/logistics-center',
+      name: 'LogisticsCenter',
+      component: LogisticsCenter
+    },
+    // 个人中心页面
+    {
+      path: '/personal',
+      name: 'PersonalCenter',
+      component: PersonalCenter
     },
     // 重定向至订单页面
     {

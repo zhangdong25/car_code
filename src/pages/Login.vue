@@ -50,7 +50,7 @@ export default {
   methods: {
     loginTo() {
       /* alert(`用户名为：${this.username},用户密码为：${this.password},${this.select}`) */
-      this.$router.push('/order')
+      this.$router.push('/trans-order')
     },
     register() {
       if (this.username == '' || this.password == '' || this.passwordCopy == '' || this.phone == '' || this.value == '') {
