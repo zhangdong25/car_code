@@ -50,7 +50,11 @@ export default {
   methods: {
     loginTo() {
       /* alert(`用户名为：${this.username},用户密码为：${this.password},${this.select}`) */
-      this.$router.push('/trans-order')
+      if (this.username == 'driver' && this.password == '111111') {
+        this.$router.push('/driver_orderlist')
+      } else {
+        this.$router.push('/trans-order')
+      }
       this.$message({
         message: '欢迎进入二手车物流管理系统',
         type: 'success'

@@ -14,9 +14,14 @@ import NotFound from '@/components/404.vue'
 import Login from "@/pages/Login"
 import PersonalCenter from "@/pages/PersonalCenter.vue"
 
+// 司机页面
+import OrderList_Driver from "@/pages/Driver/OrderList"
+import History from "@/pages/Driver/History"
+import LogisticsCenter_driver from "@/pages/Driver/LogisticsCenter"
+
 
 // 向外暴露并配置路由
-export default new VueRouter({
+const router = new VueRouter({
   routes: [
     // 登录页面
     {
@@ -60,11 +65,33 @@ export default new VueRouter({
       name: 'PersonalCenter',
       component: PersonalCenter
     },
-    // 重定向至订单页面
+    // 重定向至登录页面
     {
       path: '/',
       redirect: '/login',
       component: Login
+    },
+
+
+    /* 司机页面 */
+    // 订单列表
+    {
+      path: "/driver_orderlist",
+      name: 'Driver_OrderList',
+      component: OrderList_Driver,
+      meta: { DriverRole: true }
+    },
+    // 历史订单
+    {
+      path: '/history',
+      name: 'HistoryOrder',
+      component: History
+    },
+    // 更新物流页面
+    {
+      path: '/LogisticsCenter_driver',
+      name: 'LogisticsCenter_driver',
+      component: LogisticsCenter_driver
     },
     {
       // 404页面
@@ -74,3 +101,17 @@ export default new VueRouter({
     }
   ]
 })
+
+// 全局路由守卫
+// 用于判断用户身份
+router.beforeEach((to, from, next) => {
+  const role = to.meta.DriverRole;
+  if (role) {
+    console.log("司机身份");
+    next();
+  } else {
+    next();
+  }
+})
+
+export default router;
