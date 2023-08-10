@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -49,16 +50,31 @@ export default {
   },
   methods: {
     loginTo() {
+      const userData = {
+        username: this.username,
+        password: this.password
+      }
       /* alert(`用户名为：${this.username},用户密码为：${this.password},${this.select}`) */
       if (this.username == 'driver' && this.password == '111111') {
-        this.$router.push('/driver_orderlist')
+        this.$router.push('/driver_orderlist');
+        this.$message({
+          message: '欢迎进入二手车物流管理系统',
+          type: 'success'
+        });
       } else {
-        this.$router.push('/trans-order')
+        axios.post("http:localhost/car", userData, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(response => {
+          console.log(response);
+        })
+        /* this.$router.push('/trans-order');
+        this.$message({
+          message: '欢迎进入二手车物流管理系统',
+          type: 'success'
+        }); */
       }
-      this.$message({
-        message: '欢迎进入二手车物流管理系统',
-        type: 'success'
-      });
     },
     register() {
       if (this.username == '' || this.password == '' || this.passwordCopy == '' || this.phone == '' || this.value == '') {
